@@ -6,11 +6,12 @@ destination=$3
 
 find "$source_folder" -name "$subfolder_name" -type d | while read dir; do
   # create new folder in the destination directory, preserving the original file structure and keeping the parent directory names and the subfolder name
-  parent_folder=$(basename $(dirname "$dir"))
+  parent_folder=$(dirname "$dir")
   mkdir -p "$destination/$parent_folder/$subfolder_name"
   # Copy the contents of the subdirectory to the new folder in the destination directory
   cp -R "$dir"/* "$destination/$parent_folder/$subfolder_name"
 done
+
 
 # You can run this script by typing the command bash scriptname.sh sourcefolder subfoldername destinationfolder. 
 # For example, if the script is named copysubs.sh parent_folder subfoldername destination
